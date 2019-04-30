@@ -658,6 +658,7 @@ for E in E_span:
 
 
     depth_relation = np.zeros((1,2))
+    depth_from_file = np.zeros((1,2))
 
 
     depth_file = open(sim_dir+"/depth_of_interaction.txt", "r")
@@ -735,6 +736,24 @@ ax.set_ylabel("Frequency")
 ax.set_title("Interactions with the simulated leather vs Energy")
 ax.legend()
 fig3.savefig(curr_dir+"/results/frequency_of_interactions_vs_energy.png")
+
+
+
+
+fig5 = plt.figure(figsize = (10,7))
+ax = plt.axes()
+ax.plot(E_span, n_of_collagen_broken_oo, label = "Broken Collagen C=O")
+ax.plot(E_span, n_of_collagen_broken_o, label = "Broken Collagen C-O")
+ax.plot(E_span, n_of_collagen_non_o_broken, label = "Other Collagen Bonds Broken")
+ax.plot(E_span, n_of_elastin_broken, label = "Bonds Broken in Elastin")
+#ax.plot(E_span, n_of_water_inter, label = "Interactions in Water")
+#ax.plot(E_span, n_of_no_interactions, label = "No Interactions")
+ax.set_ylim(bottom = 0.)
+ax.set_xlabel("Energy in keV")
+ax.set_ylabel("Frequency")
+ax.set_title("Interactions with the simulated leather vs Energy")
+ax.legend()
+fig5.savefig(curr_dir+"/results/frequency_of_interactions_vs_energy_wo_h20.png")
 
 
 

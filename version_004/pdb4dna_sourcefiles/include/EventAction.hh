@@ -80,8 +80,8 @@ public:
       interacter.open("interaction_counter.txt", fstream::app);
       interacter << "1" << G4endl;
       interacter.close();
-      positioner.open("depth_of_interaction.txt");
-      positioner << edep << "\t\t\t" << partz;
+      positioner.open("depth_of_interaction.txt", fstream::app);
+      positioner << edep << "\t\t\t" << partz << G4endl;
       positioner.close();
     }
     else
