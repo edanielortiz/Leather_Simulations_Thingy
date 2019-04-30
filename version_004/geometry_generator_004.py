@@ -164,7 +164,7 @@ n_atom_negative_o = 2
 #ATOM      4  O   PRO A   1       6.313   2.168   7.380  0.77 18.55           O\n
 first_str_o = "ATOM  "
 second_str_o = "  O   PRO A   1    "
-last_str_o = "  0.77 18.55           O\n"
+last_str_o = "  0.77 18.55           O  1\n"
 
 
 #positive one
