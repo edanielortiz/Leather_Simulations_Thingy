@@ -509,6 +509,8 @@ for E in E_span:
 
                 energy_relation = np.append(energy_relation, np.reshape(input_from_file[i][:], (1,6)), 0)
 
+
+
     bond_info = np.array([0,0,0,0,0,0])
     for i in range(len(energy_relation[:])):
 
@@ -654,14 +656,63 @@ for E in E_span:
     #n_of_no_interactions.append(bond_info[5]/ float(n_e))
 
 
+
+    depth_relation = np.zeros((1,2))
+
+
+    depth_file = open(sim_dir+"/depth_of_interaction.txt", "r")
+    in_depth = depth_file.readlines()
+    depth_file.close()
+
+    conta_2 = 1
+
+    for i in range(len(in_depth)):
+
+        if len(np.fromstring(in_depth[i], sep="\t\t\t")) != 2:
+            continue
+        else:
+
+            if conta == 1:
+
+                depth_from_file = np.reshape(np.fromstring(in_depth[i], sep="\t\t\t"), (1,2))
+                conta += 1
+
+            else:
+
+                depth_from_file = np.append(depth_from_file, np.reshape(np.fromstring(in_depth[i], sep="\t\t\t"), (1,2)), 0)
+                conta += 1
+
+
+	k = 0
+
+    for i in range(len(depth_from_file[:])):		#Reduce the size of the array to only enev
+
+        if depth_from_file[i][0] != 0:
+
+            k += 1
+
+            if k == 1:
+
+                depth_relation = np.reshape(depth_from_file[i][:], (1,2))
+
+            else:
+
+                depth_relation = np.append(depth_relation, np.reshape(depth_from_file[i][:], (1,2)), 0)
+
+
+
+
+
+
+
     num_bins = 100
     fig4 = plt.figure(figsize = (15,15))
     ax4 = fig4.add_subplot(111)
-    n, bins, patches = ax4.hist((energy_relation[:,5] - (world_z_length/2.0))*(-1), num_bins, facecolor='blue', alpha = 0.5)
+    n, bins, patches = ax4.hist((depth_relation[:,1] - (world_z_length/2.0))*(-1), num_bins, facecolor='blue', alpha = 0.5)
     ax4.set_xlabel("Depth in Angstrom")
     ax4.set_ylabel("Frequency")
     ax4.set_title("Depth Reach with "+str(E)+" keV electron beam")
-    fig4.savefig(curr_dir+"/depth_reach_at_"+str(E)+"keV.png")
+    fig4.savefig(curr_dir+"/results/depth_reach_at_"+str(E)+"keV.png")
 
 
 

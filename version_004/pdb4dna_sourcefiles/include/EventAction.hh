@@ -80,6 +80,9 @@ public:
       interacter.open("interaction_counter.txt", fstream::app);
       interacter << "1" << G4endl;
       interacter.close();
+      positioner.open("depth_of_interaction.txt");
+      positioner << edep << "\t\t\t" << partz;
+      positioner.close();
     }
     else
     {
@@ -145,6 +148,7 @@ private:
   //Files pointers
   std::ofstream file;
   std::ofstream interacter;
+  std::ofstream positioner;
   std::ifstream pdeebfile;
 
 
